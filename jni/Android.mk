@@ -166,6 +166,61 @@ include $(BUILD_SHARED_LIBRARY)
 
 
 ######################
+# mupen64plus-rsp-cxd4
+######################
+include $(CLEAR_VARS)
+SRCDIR := ./mupen64plus-rsp-cxd4
+
+LOCAL_MODULE := mupen64plus-rsp-cxd4
+LOCAL_ARM_MODE := arm
+
+LOCAL_C_INCLUDES := $(M64P_API_INCLUDES)
+
+LOCAL_SRC_FILES :=           \
+    $(SRCDIR)/su.c \
+    $(SRCDIR)/vu/add.c \
+    $(SRCDIR)/vu/divide.c \
+    $(SRCDIR)/vu/logical.c \
+    $(SRCDIR)/vu/multiply.c \
+    $(SRCDIR)/vu/select.c \
+    $(SRCDIR)/vu/vu.c \
+    $(SRCDIR)/module.c \
+    $(SRCDIR)/osal_dynamiclib_unix.c \
+
+LOCAL_CFLAGS :=         \
+    $(COMMON_CFLAGS)    \
+    -DM64P_PLUGIN_API   \
+
+LOCAL_LDLIBS := -ldl
+
+ifeq ($(TARGET_ARCH_ABI), armeabi-v7a)
+    # Use for ARM7a:
+    LOCAL_CFLAGS += -fPIC
+    LOCAL_LDFLAGS := -fPIC
+
+else ifeq ($(TARGET_ARCH_ABI), armeabi)
+    # Use for pre-ARM7a:
+    LOCAL_CFLAGS += -fPIC
+    LOCAL_LDFLAGS := -fPIC
+
+else ifeq ($(TARGET_ARCH_ABI), x86)
+    # Use for x86:
+    LOCAL_CFLAGS += -fno-PIC -msse2 -DARCH_MIN_SSE2
+    LOCAL_LDFLAGS := -fno-PIC
+
+else ifeq ($(TARGET_ARCH_ABI), mips)
+    # Use for MIPS:
+    #TODO
+
+else
+    # Any other architectures that Android could be running on?
+
+endif
+
+include $(BUILD_SHARED_LIBRARY)
+
+
+######################
 # mupen64plus-rsp-hle
 ######################
 include $(CLEAR_VARS)
