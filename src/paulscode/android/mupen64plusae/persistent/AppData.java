@@ -247,7 +247,7 @@ public class AppData
         
         // Files
         coreLib = libsDir + "/libmupen64plus-core.so";
-        rspLib = libsDir + "/libmupen64plus-rsp-hle.so";
+        rspLib = libsDir + "/libmupen64plus-rsp-cxd4.so";
         inputLib = libsDir + "/libmupen64plus-input-android.so";
         gln64_conf = coreSharedDataDir + "/gln64.conf";
         glide64mk2_ini = coreSharedDataDir + "/Glide64mk2.ini";
@@ -267,7 +267,7 @@ public class AppData
                 libraryExists( "mupen64plus-audio-sdl" )        &&
                 libraryExists( "mupen64plus-core" )             &&
                 libraryExists( "mupen64plus-input-android" )    &&
-                libraryExists( "mupen64plus-rsp-hle" )          &&
+                libraryExists( "mupen64plus-rsp-cxd4" )         &&
                 libraryExists( "mupen64plus-ui-console" )       &&
                 libraryExists( "mupen64plus-video-glide64mk2" ) &&
                 libraryExists( "mupen64plus-video-gln64" )      &&
